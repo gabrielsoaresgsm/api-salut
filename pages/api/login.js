@@ -1,4 +1,4 @@
-import login from "../../utils/userDAO";
+import {login} from "../../utils/userDAO";
 
 export default async function handler(req, res){
     // res.status(200).json(req.body)

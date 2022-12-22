@@ -6,7 +6,7 @@
 // Excluir
 import connect from "./database";
 
-async function login(email, password){
+const login = async (email, password) =>{
     const {db} = await connect()
 
     const user = {
@@ -26,4 +26,48 @@ async function login(email, password){
     return response
 }
 
-export default login
+
+const register = async (email, password, name ) => {
+    const {db} = await connect()
+
+    const userRegister = {
+        email: email,
+        password: password,
+        name: name,
+    }
+
+    const collection = db.collection("users")
+
+
+    const response = collection.insertOne(userRegister)
+
+    return response
+    
+}
+
+
+
+const getUser = async (id) =>{
+    const {db} = await connect()
+
+    const user = {
+        id: id,
+    }
+
+    const collection = db.collection("users")
+
+    const options = {
+        projection: {
+            password: false
+        }
+    }
+    const response = collection.findOne(user, options)
+
+    return response
+}
+
+export {
+    login,
+    register,
+    getUser
+} 

@@ -6,7 +6,6 @@ export default async function handler(req, res){
 
 
     const user = {
-        id: req.body.id,
         email: req.body.email,
         password: req.body.password,
         name: req.body.name
